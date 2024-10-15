@@ -1,0 +1,2081 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Tutorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+    <style>
+        .keyword {
+           color: rgb(81, 81, 255); /* Change to your preferred color */
+           font-weight: bold;
+        }
+        .print {
+            color: #706ae9;
+        }
+
+        .function-name {
+          color: rgb(45, 255, 45); /* Change to your preferred color */
+        }
+
+        .method {
+          color: rgb(255, 186, 58); /* Change to your preferred color */
+        }
+
+        .class-name {
+          color: rgb(255, 48, 255); /* Change to your preferred color */
+        }
+
+       .variable {
+         color: rgb(255, 81, 81); /* Change to your preferred color */
+        }
+
+        .string {
+         color: rgb(255, 54, 54); /* Change to your preferred color */
+        }
+
+        .number {
+          color: rgb(56, 255, 255); /* Change to your preferred color */
+        }
+
+        /* Body and font settings */
+        body {
+            font-family: 'Fira Code', monospace;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-size: 18px; /* Increased base font size */
+        }
+
+        /* Navigation bar styling */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(20, 30, 40, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            font-size: 1.2em; /* Bigger navigation links */
+        }
+
+        nav a {
+            color: #00ffcc;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        /* Main content styling */
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 3em;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+            color: #ffcc00; /* Eye-catching heading color */
+        }
+
+        /* Card style for sections */
+        .card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .Wcard {
+            background: rgba(47, 40, 72, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Code styling */
+        p {
+            color: #e5e5e5; /* Slightly dimmed text */
+            font-size: 1.1em; /* Larger paragraph text */
+        }
+
+        pre {
+            background-color: #272822; /* Darker background for code blocks */
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            transition: background-color 0.3s ease; /* Smooth background transition */
+            font-size: 1.1em; /* Larger font for code */
+        }
+
+        pre:hover {
+            background-color: #3c3c3c; /* Darker on hover */
+        }
+
+        /* Button styling */
+        button {
+            background-color: #00ffcc;
+            color: #141e30;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+            font-size: 1.2em; /* Bigger buttons */
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6); /* Glowing effect */
+        }
+
+        button:hover {
+            background-color: #ffcc00;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+        }
+
+        /* Quiz section styling */
+        .quiz {
+            display: none;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .quiz p {
+         margin: 20px 0 10px; /* Adds space above and maintains existing margins */
+        font-size: 1.2em; /* Bigger text in quizzes */
+        }
+
+
+        /* Correct answer highlight */
+        .correct {
+            background-color: #00ff00; /* Green background for correct answer */
+        }
+
+        /* Dark mode styles */
+        body.light-mode {
+            background: #f0f0f0;
+            color: #141e30;
+        }
+
+        body.light-mode nav {
+            background: rgba(240, 240, 240, 0.9);
+        }
+
+        body.light-mode pre {
+            background: #f5f5f5;
+            color: #141e30;
+        }
+
+        body.light-mode button {
+            background-color: #141e30;
+            color: #f0f0f0;
+        }
+
+        body.light-mode button:hover {
+            background-color: #ffcc00;
+            color: #141e30;
+        }
+
+        .quiz.show {
+            display: block; /* Show quiz when toggled */
+            opacity: 1;
+        }
+
+        .quiz.hidden {
+            opacity: 0; /* Fade out effect */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateY(0); /* Slide out to above */
+            }
+            to {
+                transform: translateY(-20px);
+            }
+        }
+        @keyframes neon-flicker {
+          0% {
+          opacity: 1;
+         }
+         100% {
+         opacity: 0.8;
+        }
+       }
+
+        /* Adding cool button effects */
+        button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        button:hover::before {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+        .copy-btn {
+         position: absolute;
+         top: 5px;
+         right: 10px;
+         background-color: #4CAF50;
+         color: white;
+         border: none;
+         padding: 5px 10px;
+         cursor: pointer;
+         font-size: 12px;
+         border-radius: 4px;
+         display: none;
+    }
+
+    .code-container {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .code-container:hover .copy-btn {
+        display: block; /* Show button on hover */
+    }
+    .copy-btn:hover {
+        background-color: #3e8e41;
+    }
+       
+    .options-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    }
+
+    .options-container button {
+        margin: 10px; /* Space between buttons */
+     padding: 10px 20px; /* Button padding */
+     background-color: #00ffcc;
+     color: #000; /* Black text */
+     border: 2px solid #00ffcc;
+     border-radius: 5px; /* Rounded corners */
+     cursor: pointer; /* Pointer cursor on hover */
+     transition: background-color 0.3s, transform 0.2s; /* Transition f/* Transition for hover effects  x; /* Increased font size for better readability */
+    }
+
+    .success-message {
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background-color: #00ffcc;
+     color: #000; /* Black text */
+     padding: 15px;
+     border: 2px solid #000000;
+     border-radius: 10px;
+     box-shadow: 0 0 20px rgba(76, 175, 80, 0.6), 0 0 30px rgba(76, 175, 80, 0.4), 0 0 40px rgba(76, 175, 80, 0.2); /* Neon green glow effect */
+     z-index: 1000; /* Ensure it appears above other content */
+     font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+     text-align: center; /* Centered text */
+     animation: neon-flicker 1.5s infinite alternate; /* Flickering effect */
+} 
+     .incorrect-message {
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     background-color: #ff7f7f; /* Dark background for contrast */
+     color: #000; /* Black text */
+     padding: 15px;
+     border: 2px solid #000000;
+     border-radius: 10px;
+     box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4), 0 0 40px rgba(255, 0, 0, 0.2); /* Red glow effect */
+     z-index: 1000; /* Ensure it appears above other content */
+     font-family: 'Courier New', Courier, monospace; /* Monospace font for a techy feel */
+     text-align: center; /* Centered text */
+     animation: neon-flicker 1.5s infinite alternate; /* Flickering effect */
+    } 
+    .story {
+        background-color: #272822;
+        padding: 10px;
+        border-left: 5px solid #1e90ff;
+        margin-top: 10px;
+        font-style: italic;
+    }
+    .story h3 {
+        margin-top: 0;
+        color: #1e90ff;
+    }
+    .story .icon {
+        font-size: 20px;
+        color: #1e90ff;
+        margin-right: 5px;
+    }
+
+    .tip {
+        background-color: #272822;
+        padding: 10px;
+        border-left: 5px solid #ffa500;
+        margin-top: 10px;
+        font-style: italic;
+    }
+    .tip h3 {
+        margin-top: 0;
+        color: #ffa500; /* Orange color for Tip title */
+    }
+
+    .tip .icon {
+        font-size: 20px;
+        color: #ffa500; /* Orange icon */
+        margin-right: 5px;
+    }
+    h4 {
+        color: white;
+        font-size: 1cm;
+    }
+    
+</style>
+    </head>
+    <body>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#" id="contactLink">Contact</a>
+        </nav>
+        
+
+<div class="card" style="position: relative;">
+    <h2>What is Python?</h2>
+    <div class="content">
+        <p><span style="color: lightyellow;"><strong>Python</strong></span> is an <span style="color: lightyellow;"><strong>interpreted, high-level programming language</strong></span> known for its <span style="color: lightyellow;"><strong>simplicity and readability</strong></span>. It was created by <span style="color: lightyellow;"><strong>Guido van Rossum</strong></span> and released in <span style="color: lightyellow;"><strong>1991</strong></span>. Python is designed to be <span style="color: lightyellow;"><strong>easy to use and understand</strong></span>, making it an excellent choice for beginners while also being powerful enough for experts.</p>
+        
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>Python has evolved over the years into one of the most <span style="color: lightyellow;"><strong>widely used programming languages</strong></span> in the world. Its success is due to its <span style="color: lightyellow;"><strong>clear syntax</strong></span>, which allows developers to focus on solving problems rather than struggling with complex code. It's used in various fields, from <span style="color: lightyellow;"><strong>web development</strong></span> and <span style="color: lightyellow;"><strong>automation</strong></span> to <span style="color: lightyellow;"><strong>data science</strong></span>, <span style="color: lightyellow;"><strong>artificial intelligence</strong></span>, and more.</p>
+        </div>
+
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>One of Python's strengths is its <span style="color: lightyellow;"><strong>vast standard library</strong></span> and <span style="color: lightyellow;"><strong>active community support</strong></span>. Whether you're building a web application, analyzing data, or automating tasks, there are countless <span style="color: lightyellow;"><strong>libraries and frameworks</strong></span> that can help you get the job done efficiently.</p>
+        </div>
+    </div>
+
+
+    <!-- Hide/Show Button -->
+    <button id="toggleButton" style="position: absolute; right: 10px; top: 10px;" onclick="toggleContent()">Hide</button>
+</div>
+
+<script>
+function toggleContent() {
+    var content = document.querySelector('.content'); // Select the content to hide/show
+    var toggleButton = document.getElementById('toggleButton');
+    
+    // Toggle visibility
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        toggleButton.innerHTML = 'Hide';
+    } else {
+        content.style.display = 'none';
+        toggleButton.innerHTML = 'Show';
+    }
+}
+</script>
+
+<h1>Python Tutorials</h1>
+<!-- Tutorial 1: Introduction to Python -->
+<div class="card">
+    <h2>Tutorial 1: Introduction to Python</h2>
+        <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>When you first begin learning any new programming language, one of the first things you'll do is print a simple message to the screen. In Python, this is as easy as typing <code>print("Hello, World!")</code>. This is Python's way of introducing itself—saying "Hello" to the world through your code!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId1"><span class="print">print</span>(<span class="string">"Hello, World!"</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId1')">Copy Code</button>
+    </div>
+    
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>The <code>print()</code> function is your best friend when starting out. Use it often to display text and debug your code by showing variables or messages. Remember to always put the text inside quotation marks!</p>
+    </div>
+
+    <button onclick="showQuiz('python-intro')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-intro"></div>
+</div>>
+        
+<!-- Tutorial 2: Data Types -->
+<div class="Wcard">
+    <h4>Tutorial 2: Data Types</h4>
+
+
+
+    <!--  Integers -->
+    <div class="card">
+        <h3>Integers</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>Imagine you're running a bookstore, and you want to keep track of the number of copies of each book. For example, you might have <code>copies = 25</code> for a bestseller. Here, <code>copies</code> is an integer!</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId1">
+<span class="keyword">copies</span> = <span class="number">25</span>  <span class="operator"># Integer (number of copies)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId1')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Integers are whole numbers and are perfect for counting items like the number of books in stock!</p>
+        </div>
+        <button onclick="showQuiz('python-integers')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-integers"></div> 
+
+    </div>
+
+    <!-- Floats -->
+    <div class="card">
+        <h3> Floats</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>You want to calculate the average price of books in your store. If one book costs $9.99 and another costs $14.50, you can represent these prices as floats, like <code>average_price = 12.25</code>.</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId2">
+<span class="keyword">average_price</span> = <span class="number">12.25</span>  <span class="operator"># Float (average price)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId2')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Use floats for numbers that require decimals, such as prices or measurements!</p>
+        </div>
+        <button onclick="showQuiz('python-floats')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-floats"></div>
+
+    </div>
+
+    <!--Strings -->
+    <div class="card">
+        <h3>Strings</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>When setting up your bookstore's website, you want to display the titles of your books. You can use strings to hold these titles, like <code>book_title = 'The Great Gatsby'</code>.</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId3">
+<span class="keyword">book_title</span> = <span class="string">'The Great Gatsby'</span>  <span class="operator"># String (book title)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId3')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Strings can hold text, including book titles and author names. Use them to represent any textual data!</p>
+        </div>
+        <button onclick="showQuiz('python-strings')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-strings"></div>
+    </div>
+
+    <!-- Lists -->
+    <div class="card">
+        <h3>Lists</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>You want to keep a list of your favorite book titles. You can create a list in Python: <code>favorite_books = ['1984', 'Brave New World', 'Fahrenheit 451']</code>.</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId4">
+<span class="keyword">favorite_books</span> = <span class="operator">[</span><span class="string">'1984'</span>, <span class="string">'Brave New World'</span>, <span class="string">'Fahrenheit 451'</span><span class="operator">]</span>  <span class="operator"># List (favorite books)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId4')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Lists can store multiple items. Use them to group similar values together, like book titles!</p>
+        </div>
+        <button onclick="showQuiz('python-lists')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-lists"></div> 
+
+    </div>
+
+    <!-- Tuples -->
+    <div class="card">
+        <h3>Tuples</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>You want to store the dimensions of a book in a single variable. You can use a tuple to hold this information: <code>book_dimensions = (5.5, 8.0)</code> for width and height.</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId5">
+<span class="keyword">book_dimensions</span> = <span class="operator">(</span><span class="number">5.5</span>, <span class="number">8.0</span><span class="operator">)</span>  <span class="operator"># Tuple (book dimensions)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId5')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Tuples are similar to lists but are immutable. Use them to store fixed collections of items!</p>
+        </div>
+        <button onclick="showQuiz('python-tuples')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-tuples"></div>
+
+    </div>
+
+    <!-- Dictionaries -->
+    <div class="card">
+        <h3>Dictionaries</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>You want to store book titles along with their authors. You can use a dictionary: <code>books = {'1984': 'George Orwell', 'Brave New World': 'Aldous Huxley'}</code>.</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId6">
+<span class="keyword">books</span> = <span class{operator}>{"1984": "George Orwell", "Brave New World": "Aldous Huxley"}</span>  <span class="operator"># Dictionary (book titles and authors)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId6')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Dictionaries store key-value pairs. Use them when you need to associate data, like titles with authors!</p>
+        </div>
+        <button onclick="showQuiz('python-dictionaries')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-dictionaries"></div>
+    </div>
+
+    
+
+    <!-- Sets -->
+    <div class="card">
+        <h3>Sets</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>You want to keep track of unique genres in your bookstore. You can use a set to store these genres: <code>genres = {'Fiction', 'Non-Fiction', 'Science Fiction'}</code>.</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId7">
+<span class="keyword">genres</span> = <span class="operator">{</span><span class="string">'Fiction'</span>, <span class="string">'Non-Fiction'</span>, <span class="string">'Science Fiction'</span><span class="operator">}</span>  <span class="operator"># Set (unique genres)</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId7')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Sets are collections of unique items. Use them to eliminate duplicates and keep a clean list!</p>
+        </div>
+        <button onclick="showQuiz('python-sets')">Take Quiz</button>
+        <div class="quiz" id="quiz-python-sets"></div>
+
+    </div>
+
+
+   <!-- Boolean -->
+   <div class="card">
+    <h3>Boolean</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Let's say you want to check if your bookstore is open or closed. You can use a boolean to represent this state: <code>is_open = True</code>.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId8">
+<span class="keyword">is_open</span> = <span class="boolean">True</span>  <span class="operator"># Boolean (store status)</span>
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId8')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Booleans represent either <code>True</code> or <code>False</code> values. Use them to track binary states!</p>
+    </div>
+    <button onclick="showQuiz('python-boolean')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-boolean"></div>
+
+</div>
+
+<!--  NoneType -->
+<div class="card">
+    <h3>NoneType</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>If you're not sure about a book's stock, you might want to initialize it as <code>None</code>, indicating no value yet: <code>stock = None</code>.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId9">
+<span class="keyword">stock</span> = <span class="keyword">None</span>  <span class="operator"># NoneType (no value)</span>
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId9')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Use <code>None</code> to represent a variable that hasn't been assigned a value yet!</p>
+    </div>
+    <button onclick="showQuiz('python-nonetype')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-nonetype"></div>
+
+</div>
+
+<!-- Complex -->
+<div class="card">
+    <h3>Complex Numbers</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>In some advanced mathematical calculations for your bookstore, you might need to deal with complex numbers. For example, if you're calculating something like electrical circuits, you could have a complex number like <code>z = 3 + 5j</code>.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId10">
+<span class="keyword">z</span> = <span class="number">3</span> + <span class="number">5j</span>  <span class="operator"># Complex number</span>
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId10')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Use complex numbers when you need to work with both real and imaginary parts, like in scientific calculations!</p>
+    </div>
+    <button onclick="showQuiz('python-complex')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-complex"></div>
+
+</div>
+
+</div>
+<!-- Tutorial 3: Control Structures -->
+<div class="Wcard">
+    <h4>Tutorial 3: Control Structures</h4>
+    <div class="card">
+    <h3>if</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Let’s say you're creating a program that checks how many books are left in stock. If the stock is 10 or more, the program will remind you that you have enough books. This decision-making process is handled by control structures like <code>if</code> statements!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId3">
+<span class="control">if</span> <span class="control">x</span> <span class="operator">==</span> <span class="number">10</span>:
+    <span class="control">print</span>(<span class="string">"x is 10"</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId3')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Use <code>if-else</code> statements to control the flow of your program. You can compare values using operators like <code>==</code> (equal to) and execute different blocks of code based on the result.</p>
+    </div>
+</div>
+
+    <!-- If-Else Statements -->
+    <div class="card">
+        <h3>If-Else Statements</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>Imagine you're creating a program that checks how many books are left in stock. If the stock is 10 or more, the program will remind you that you have enough books. This decision-making process is handled by control structures like <code>if</code> statements!</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId1">
+<span class="control">stock</span> = <span class="number">10</span>
+<span class="control">if</span> <span class="control">stock</span> >= <span class="number">10</span>:
+    <span class="control">print</span>(<span class="string">"You have enough books in stock."</span>)
+<span class="control">else</span>:
+    <span class="control">print</span>(<span class="string">"You need to order more books!"</span>)
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId1')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Use <code>if-else</code> statements to control the flow of your program based on conditions!</p>
+        </div>
+    </div>
+
+    <!-- Loops -->
+    <div class="card">
+        <h3>Loops</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>Imagine you need to print all the book titles in your store's inventory. You could write a separate print statement for each title, but a loop lets you repeat an action for every item in a list!</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId2">
+<span class="control">books</span> = [<span class="string">"1984"</span>, <span class="string">"The Great Gatsby"</span>, <span class="string">"Moby Dick"</span>]
+<span class="control">for</span> <span class="variable">book</span> <span class="control">in</span> <span class="control">books</span>:
+    <span class="control">print</span>(<span class="variable">book</span>)
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId2')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Use <code>for</code> loops to iterate over a collection and perform actions on each item!</p>
+        </div>
+    </div>
+
+    <!-- Functions -->
+    <div class="card">
+        <h3>Functions</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>Let's say you frequently need to print a greeting in your program. Instead of repeating the code, you can write a function and call it whenever you need!</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId3">
+<span class="keyword">def</span> <span class="control">greet</span>():
+    <span class="control">print</span>(<span class="string">"Hello! Welcome to our bookstore."</span>)
+
+<span class="control">greet</span>()  <span class="operator"># Call the function</span>
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId3')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Functions allow you to encapsulate reusable code and call it whenever necessary, enhancing code organization!</p>
+        </div>
+    </div>
+
+    <!-- While Loops -->
+    <div class="card">
+        <h3>While Loops</h3>
+        <div class="story">
+            <h3><span class="icon">📖</span> Story:</h3>
+            <p>When you want to repeat an action until a certain condition is met, you can use a <code>while</code> loop. For example, you could keep asking a user for input until they provide a valid response!</p>
+        </div>
+        <div class="code-container">
+            <pre id="codeId4">
+<span class="control">user_input</span> = <span class="string">""</span>
+<span class="control">while</span> <span class="control">user_input</span> != <span class="string">"yes"</span>:
+    <span class="control">user_input</span> = <span class="control">input</span>(<span class="string">"Do you want to continue? (yes/no)"</span>)
+            </pre>
+            <button class="copy-btn" onclick="copyCode('codeId4')">Copy Code</button>
+        </div>
+        <div class="tip">
+            <h3><span class="icon">💡</span> Tip:</h3>
+            <p>Use <code>while</code> loops to continue executing a block of code as long as a condition remains true!</p>
+        </div>
+    </div>
+
+<!-- Lists -->
+<div class="card">
+    <h3> Lists</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Imagine you're managing a list of books in your inventory. Instead of creating separate variables for each book, you can use a list to store them all together!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId6">
+<span class="control">books</span> = [<span class="string">"1984"</span>, <span class="string">"The Great Gatsby"</span>, <span class="string">"Moby Dick"</span>]
+    <span class="control">print</span>(<span class="control">books</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId6')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Lists are used to store multiple items in a single variable, and you can access individual items by their index!</p>
+    </div>
+</div>
+
+<!-- Dictionaries -->
+<div class="card">
+    <h3> Dictionaries</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>If you want to store additional details about each book, like the author and price, a dictionary lets you associate keys with values!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId7">
+<span class="control">book_info</span> = {<span class="string">"title"</span>: <span class="string">"1984"</span>, <span class="string">"author"</span>: <span class="string">"George Orwell"</span>}
+    <span class="control">print</span>(<span class="control">book_info</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId7')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Dictionaries allow you to store key-value pairs, making it easy to look up specific details about an item!</p>
+    </div>
+</div>
+
+<!--Complex Numbers -->
+<div class="card">
+    <h3>Complex Numbers</h3>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>In some advanced mathematical calculations for your bookstore, you might need to deal with complex numbers. For example, if you're calculating something like electrical circuits, you could have a complex number like <code>z = 3 + 5j</code>.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId10">
+<span class="keyword">z</span> = <span class="number">3 + 5j</span>  <span class="operator"># Complex number</span>
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId10')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Complex numbers are useful for more advanced mathematical operations. They consist of a real part and an imaginary part!</p>
+    </div>
+</div>
+</div>
+<!-- PARRtttWW-->
+<!-- Tutorial 4: Functions -->
+<div class="Wcard">
+<h4>Tutorial 4: Function</h4>
+
+<div class="card">
+    <h2>Basic function</h2>
+        <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Imagine you want to greet every customer that comes into your bookstore. Instead of writing the greeting every time, you can create a reusable <strong>function</strong>! This function will greet customers whenever it’s called.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId4">
+<span class="keyword">def</span> <span class="control">greet</span>():
+    <span class="control">print</span>(<span class="string">"Hello! Welcome to our bookstore."</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId4')">Copy Code</button>
+    </div>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Use functions to keep your code organized. A function is like a recipe: it contains steps that can be reused. Define it once and call it whenever you need it!</p>
+    </div>
+    <button onclick="showQuiz('python-functions')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-functions"></div>
+</div>
+
+<div class="card">
+    <h2>Basic Function with Parameters</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Imagine you want to greet users visiting your application. Functions can take <strong>parameters</strong> to make them more flexible and personalized. For instance, you can create a function that greets a user by name. Let’s see how you can do this:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId5">
+<span class="keyword">def</span> <span class="control">greet_user</span>(<span class="control">name</span>):
+    <span class="control">print</span>(<span class="string">"Hello, " + name + "!"</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId5')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Using parameters allows your functions to be more dynamic and reusable!</p>
+    </div>
+    <button onclick="showQuiz('python-basic-params')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-basic-params"></div>
+</div>
+
+<div class="card">
+    <h2>Returning Values from Functions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Sometimes you need to perform calculations and use the results later in your code. Functions can return values that you can store and utilize later. For example, you can create a function that adds two numbers together and returns the result for further use. Here’s how:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId6">
+<span class="keyword">def</span> <span class="control">add_numbers</span>(<span class="control">a</span>, <span class="control">b</span>):
+    <span class="keyword">return</span> a + b
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId6')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Returning values allows you to store results and use them later in your program.</p>
+    </div>
+    <button onclick="showQuiz('python-return-values')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-return-values"></div>
+</div>
+
+<div class="card">
+    <h2>Default Parameters</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Have you ever encountered a situation where you want a function to operate even when certain values aren’t provided? With default parameters, you can set a parameter to have a default value. This way, if no value is provided, the function will still work smoothly. Here's how to implement this:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId7">
+<span class="keyword">def</span> <span class="control">greet_user</span>(<span class="control">name</span> = <span class="string">"Guest"</span>):
+    <span class="control">print</span>(<span class="string">"Hello, " + name + "!"</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId7')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Default parameters help simplify function calls and make your code more readable!</p>
+    </div>
+    <button onclick="showQuiz('python-default-params')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-default-params"></div>
+</div>
+
+<div class="card">
+    <h2>Functions with Multiple Return Values</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>When dealing with complex data, sometimes you need to return multiple pieces of information from a function. You can return multiple values as a tuple. This is handy for keeping related data together. Let’s take a look:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId8">
+<span class="keyword">def</span> <span class="control">calculate</span>(<span class="control">a</span>, <span class="control">b</span>):
+    <span class="keyword">return</span> a + b, a - b
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId8')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Returning multiple values can help keep related data together, making your code cleaner.</p>
+    </div>
+    <button onclick="showQuiz('python-multiple-returns')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-multiple-returns"></div>
+</div>
+
+<div class="card">
+    <h2>Nested Functions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>In programming, sometimes you may need a function that is only relevant within another function. You can define functions inside other functions, known as nested functions. This helps keep your code organized and ensures that certain functions are only used in specific contexts. Here’s an example:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId9">
+<span class="keyword">def</span> <span class="control">outer_function</span>():
+    <span class="keyword">def</span> <span class="control">inner_function</span>():
+        <span class="control">print</span>(<span class="string">"This is the inner function."</span>)
+    <span class="control">inner_function</span>()
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId9')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Nested functions can help limit the scope of a function, which can improve code organization.</p>
+    </div>
+    <button onclick="showQuiz('python-nested-functions')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-nested-functions"></div>
+</div>
+
+<div class="card">
+    <h2>Lambda Functions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>When you need a small anonymous function, you can use lambda functions. Defined using the <strong>lambda</strong> keyword, these functions can take any number of parameters but only have one expression. They are handy for quick operations without needing a full function definition. Here’s a simple example:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId10">
+<span class="keyword">add =</span> <span class="keyword">lambda</span> <span class="control">x, y</span>: x + y
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId10')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Lambda functions are useful for short functions that you need to define only once, especially in functional programming.</p>
+    </div>
+    <button onclick="showQuiz('python-lambda-functions')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-lambda-functions"></div>
+</div>
+
+<div class="card">
+    <h2>Recursion</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Have you ever encountered a problem that can be solved by breaking it down into smaller, similar problems? A function that calls itself is known as a <strong>recursive function</strong>. Recursion can be powerful for solving problems like calculating the factorial of a number. Here’s how recursion works:</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId11">
+<span class="keyword">def</span> <span class="control">factorial</span>(<span class="control">n</span>):
+    <span class="keyword">if</span> n == 0:
+        <span class="keyword">return</span> 1
+    <span class="keyword">else</span>:
+        <span class="keyword">return</span> n * <span class="control">factorial</span>(n - 1)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId11')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Recursive functions are great for problems that can be divided into similar subproblems!</p>
+    </div>
+    <button onclick="showQuiz('python-recursion')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-recursion"></div>
+</div>
+
+<div class="card">
+    <h2>Higher-Order Functions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Imagine a chef in a bustling kitchen. This chef doesn't just cook; he also teaches other aspiring cooks how to prepare their favorite dishes. In programming, a higher-order function acts like that chef, taking other functions as ingredients and creating something new. It can transform or combine these functions, just as a chef creates new recipes by mixing different flavors.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId12">
+<span class="keyword">def</span> <span class="control">apply_function</span>(<span class="control">func</span>, <span class="control">value</span>):
+    <span class="keyword">return</span> func(value)
+
+<span class="keyword">def</span> <span class="control">square</span>(<span class="control">x</span>):
+    <span class="keyword">return</span> x ** 2
+
+<span class="control">result</span> = <span class="control">apply_function</span>(<span class="control">square</span>, 5)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId12')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Higher-order functions are powerful tools for abstracting common patterns in your code.</p>
+    </div>
+    <button onclick="showQuiz('python-higher-order')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-higher-order"></div>
+</div>
+
+<div class="card">
+    <h2>Decorators</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Picture a talented artist who specializes in creating stunning portraits. One day, this artist discovers that by adding a beautiful frame to her artwork, she can enhance its appeal and make it even more captivating. In the programming world, decorators serve a similar purpose. They wrap around functions, enhancing their behavior without changing their core essence, just like the frame enhances the painting.</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId13">
+<span class="keyword">def</span> <span class="control">decorator_function</span>(<span class="control">func</span>):
+    <span class="keyword">def</span> <span class="control">wrapper</span>():
+        <span class="control">print</span>(<span class="string">"Something is happening before the function is called."</span>)
+        <span class="control">func</span>()
+        <span class="control">print</span>(<span class="string">"Something is happening after the function is called."</span>)
+    <span class="keyword">return</span> wrapper
+
+<span class="keyword">@decorator_function</span>
+<span class="keyword">def</span> <span class="control">say_hello</span>():
+    <span class="control">print</span>(<span class="string">"Hello!"</span>)
+        </pre>
+        <button class="copy-btn" onclick="copyCode('codeId13')">Copy Code</button>
+    </div>
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+        <p>Decorators are a great way to add functionality to existing functions without modifying their code.</p>
+    </div>
+    <button onclick="showQuiz('python-decorators')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-decorators"></div>
+</div>
+</div>
+        
+<!-- Tutorial 5: Functions -->
+
+<!-- Tutorial 6: Lists -->
+<div class="card">
+    <h2>Tutorial 6: Lists</h2>
+        
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+     <p> Think of a grocery list. You can create a list called <code>fruits</code> that contains your favorite fruits. This way, you can keep track of what you want to buy and even add or remove items as needed!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId6"><span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]</pre>
+        <button class="copy-btn" onclick="copyCode('codeId6')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+    <p> Lists are versatile! You can store multiple items in a single variable and easily access or modify them using their index.</p>
+    </div>
+
+    <button onclick="showQuiz('python-lists')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-lists"></div>
+</div>
+
+<!-- Tutorial 7: Strings -->
+<div class="card">
+    <h2>Tutorial 7: Strings</h2>
+    
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+     <p> Imagine sending a greeting card. You can create a <code>message</code> variable with your text, and if you want it to sound more exciting, you can make it all uppercase using the <code>upper()</code> method!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId7"><span class="variable">message</span> = <span class="string">"Hello"</span>
+<span class="method">print</span>(<span class="method">message.upper</span>())</pre>
+        <button class="copy-btn" onclick="copyCode('codeId7')">Copy Code</button>
+    </div>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+    <p> Strings are essential for handling text. Remember that you can manipulate them in various ways, such as changing their case, concatenating them, or finding their length!</p>
+     </div>
+
+    <button onclick="showQuiz('python-strings')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-strings"></div>
+</div>
+
+<!-- Tutorial 8: Dictionaries -->
+<div class="card">
+    <h2>Tutorial 8: Dictionaries</h2>
+        <div class="story">
+         <h3><span class="icon">📖</span> Story:</h3>
+    <p> Think of a dictionary as a real-life address book. You can store a person's information, like their <code>name</code> and <code>age</code>, in a single variable called <code>person</code> for easy access!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId8"><span class="variable">person</span> = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>}</pre>
+        <button class="copy-btn" onclick="copyCode('codeId8')">Copy Code</button>
+    </div>
+    
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p> Dictionaries are great for storing related information as key-value pairs. You can access values using their corresponding keys, making data retrieval intuitive!</p>
+    </div>
+    <button onclick="showQuiz('python-dictionaries')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-dictionaries"></div>
+</div>
+
+<!-- Tutorial 9: Classes -->
+<div class="card">
+    <h2>Tutorial 9: Classes</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+     <p> Imagine you're designing a new pet application. You can create a <code>Dog</code> class that describes all dogs, with a method <code>bark</code> that makes them bark whenever it's called!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId9"><span class="keyword">class</span> <span class="class-name">Dog</span>:
+    <span class="keyword">def</span> <span class="function-name">bark</span>(<span class="variable">self</span>):
+        <span class="method">print</span>(<span class="string">"Woof!"</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId9')">Copy Code</button>
+    </div>
+    
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p> Classes allow you to create blueprints for objects, encapsulating their properties and behaviors. This promotes organization and reusability in your code!</p>
+    </div>
+    <button onclick="showQuiz('python-classes')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-classes"></div>
+</div>
+
+<!-- Tutorial 10: File Handling -->
+<div class="card">
+    <h2>Tutorial 10: File Handling</h2>
+        <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p> Picture yourself as a writer. You want to read your old stories saved in a file called <code>file.txt</code>. Using the file handling methods in Python, you can easily open and read the contents!</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId10"><span class="keyword">with</span> <span class="method">open</span>(<span class="string">"file.txt"</span>, <span class="string">"r"</span>) <span class="keyword">as</span> <span class="variable">file</span>:
+    <span class="variable">content</span> = <span classmethod="method">file.read</span>()</pre>
+        <button class="copy-btn" onclick="copyCode('codeId10')">Copy Code</button>
+    </div>
+    
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p> File handling is crucial for data persistence. Make sure to manage files properly to avoid data loss or corruption!</p>
+    </div>
+    <button onclick="showQuiz('python-file-handling')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-file-handling"></div>
+</div>
+<!-- Tutorial 11: Exception Handling -->
+<div class="card">
+    <h2>Tutorial 11: Exception Handling</h2>
+        <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>Once upon a time, a coder named Alex tried to divide 1 by 0 while coding, but the computer warned him: "Cannot divide by zero!" Alex learned to handle exceptions wisely. 💻</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId11"><span class="keyword">try</span>:
+    <span class="variable">x</span> = <span class="number">1</span> / <span class="number">0</span>
+<span class="keyword">except</span> <span class="string">ZeroDivisionError</span>:
+    <span class="method">print</span>(<span class="string">"Cannot divide by zero!"</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId11')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>handle exceptions to prevent your program from crashing unexpectedly!</p>
+    </div>
+    <button onclick="showQuiz('python-exceptions')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-exceptions"></div>
+</div>
+
+<!-- Tutorial 12: Modules -->
+<div class="card">
+    <h2>Tutorial 12: Modules</h2>
+        <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>In a faraway land, a wizard named Merlin discovered the magic of modules. With a simple spell, he imported the "math" module and found the square root of 16, unlocking powerful calculations! ✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId12"><span class="keyword">import</span> <span class="string">math</span>
+<span class="variable">result</span> = <span class="method">math.sqrt</span>(<span class="number">16</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId12')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>Use modules to keep your code organized and to reuse code easily across different projects!</p>
+    </div>
+    <button onclick="showQuiz('python-modules')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-modules"></div>
+</div>
+
+<!-- Tutorial 13: List Comprehensions -->
+<div class="card">
+    <h2>Tutorial 13: List Comprehensions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p> Once, a young artist named Mia used list comprehensions to create a colorful array of squares. She smiled as her creation came to life, turning numbers into beautiful art! 🎨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId13"><span class="variable">squares</span> = [<span class="variable">x</span>**<span class="number">2</span> for <span class="variable">x</span> in <span class="method">range</span>(<span class="number">10</span>)]</pre>
+        <button class="copy-btn" onclick="copyCode('codeId13')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>List comprehensions can make your code more concise and easier to read!</p>
+    </div>
+    <button onclick="showQuiz('python-list-comprehensions')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-list-comprehensions"></div>
+</div>
+
+<!-- Tutorial 14: Lambda Functions -->
+<div class="card">
+    <h2>Tutorial 14: Lambda Functions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>In the enchanted forest, a clever fox named Ruby created a magical shortcut called a lambda function to quickly add numbers together. Everyone admired her quick wit! 🦊✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId14"><span class="variable">add</span> = <span class="keyword">lambda</span> <span class="variable">x</span>, <span class="variable">y</span>: <span class="variable">x</span> + <span class="variable">y</span>
+<span class="method">print</span>(<span class="variable">add</span>(<span class="number">2</span>, <span class="number">3</span>))</pre>
+        <button class="copy-btn" onclick="copyCode('codeId14')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>Use lambda functions for simple tasks where a full function definition is not necessary!</p>
+    </div>
+    <button onclick="showQuiz('python-lambda')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-lambda"></div>
+</div>
+
+<!-- Tutorial 15: Decorators -->
+<div class="card">
+    <h2>Tutorial 15: Decorators</h2>
+    
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>One day, a wise owl named Oliver discovered the art of decorating functions. With his special decorator, he made every function sparkle with excitement! 🦉✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId15"><span class="keyword">def</span> <span class="function-name">my_decorator</span>(<span class="variable">func</span>):
+    <span class="keyword">def</span> <span class="function-name">wrapper</span>():
+        <span class="method">print</span>(<span class="string">"Something is happening before the function is called."</span>)
+        <span class="method">func</span>()
+        <span class="method">print</span>(<span class="string">"Something is happening after the function is called."</span>)
+    <span class="keyword">return</span> <span class="function-name">wrapper</span></pre>
+        <button class="copy-btn" onclick="copyCode('codeId15')">Copy Code</button>
+    </div>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>Decorators can add functionality to existing functions without modifying their code!</p>
+    </div>
+    <button onclick="showQuiz('python-decorators')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-decorators"></div>
+</div>
+
+<!-- Tutorial 16: Generators -->
+<div class="card">
+    <h2>Tutorial 16: Generators</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p> In a magical land, a crafty wizard named Gandalf created a generator to produce endless treasures. Each time he called it, a new gem would appear! 💎✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId16"><span class="keyword">def</span> <span class="function-name">my_generator</span>():
+    <span class="keyword">yield</span> <span class="number">1</span>
+    <span class="keyword">yield</span> <span class="number">2</span>
+    <span class="keyword">yield</span> <span class="number">3</span></pre>
+        <button class="copy-btn" onclick="copyCode('codeId16')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p> Use generators to efficiently manage memory when working with large datasets!</p>
+    </div>
+    <button onclick="showQuiz('python-generators')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-generators"></div>
+</div>
+
+<!-- Tutorial 17: Context Managers -->
+<div class="card">
+    <h2>Tutorial 17: Context Managers</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>A kind guardian named Elara created a context manager to protect her enchanted forest. When entering, everyone felt safe, and when leaving, they knew all was well! 🌳✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId17"><span class="keyword">class</span> <span class="class-name">MyContext</span>:
+    <span class="keyword">def</span> <span class="function-name">__enter__</span>(<span class="variable">self</span>):
+        <span class="method">print</span>(<span class="string">"Entering the context."</span>)
+    <span class="keyword">def</span> <span class="function-name">__exit__</span>(<span class="variable">self</span>, <span class="variable">exc_type</span>, <span class="variable">exc_value</span>, <span class="variable">traceback</span>):
+        <span class="method">print</span>(<span class="string">"Exiting the context."</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId17')">Copy Code</button>
+    </div>
+
+    
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p> Use context managers to manage resources effectively, ensuring they are properly cleaned up after use!</p>
+    </div>
+    <button onclick="showQuiz('python-context-managers')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-context-managers"></div>
+</div>
+
+<!-- Tutorial 18: Regular Expressions -->
+<div class="card">
+    <h2>Tutorial 18: Regular Expressions</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>A detective named Sherlock used regular expressions to crack the code hidden in messages. With his keen eye, he uncovered numbers and secrets hidden in plain sight! 🕵️‍♂️✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId18"><span class="keyword">import</span> <span class="string">re</span>
+<span class="variable">pattern</span> = <span class="string">r'\d+'</span>
+<span class="variable">result</span> = <span class="method">re.findall</span>(<span class="variable">pattern</span>, <span class="string'>"There are 123 apples and 456 oranges."</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId18')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>Regular expressions are powerful tools for searching and manipulating strings efficiently!</p>
+    </div>
+    <button onclick="showQuiz('python-regex')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-regex"></div>
+</div>
+
+<!-- Tutorial 19: Unit Testing -->
+<div class="card">
+    <h2>Tutorial 19: Unit Testing</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>In the kingdom of CodeLand, a diligent knight named Sir Tester fought bugs with unit tests. His sharp sword, the "assertEqual," ensured that every function performed its duty! 🛡️✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId19"><span class="keyword">import</span> <span class="string">unittest</span>
+
+<span class="keyword">def</span> <span class="function-name">add</span>(<span class="variable">x</span>, <span class="variable">y</span>):
+    <span class="keyword">return</span> <span class="variable">x</span> + <span class="variable">y</span>
+
+<span class="keyword">class</span> <span class="class-name">TestMath</span>(<span class="variable">unittest.TestCase</span>):
+    <span class="keyword">def</span> <span class="function-name">test_add</span>(<span class="variable">self</span>):
+        <span class="variable">self</span>.<span class="method">assertEqual</span>(<span class="function-name">add</span>(<span class="number">2</span>, <span class="number">3</span>), <span class="number">5</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId19')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p>Unit tests help ensure that your code is working correctly and prevent bugs from sneaking in!</p>
+    </div>
+    <button onclick="showQuiz('python-unit-testing')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-unit-testing"></div>
+</div>
+
+<!-- Tutorial 20: File I/O -->
+<div class="card">
+    <h2>Tutorial 20: File I/O</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3> 
+     <p>A writer named Luna cherished the stories in her heart. With the magic of file I/O, she penned down her thoughts, turning them into beautiful words on paper! 📜✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId20"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">'file.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> <span class="variable">file</span>:
+    <span class="method">file.write</span>(<span class="string'>"Hello, World!"</span>)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId20')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tip:</h3>
+     <p> Always close files properly or use context managers to avoid data loss!</p>
+    </div>
+    <button onclick="showQuiz('python-file-io')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-file-io"></div>
+</div>
+<!-- Tutorial 21: Introduction to JSON -->
+<div class="card">
+    <h2>Tutorial 21: Introduction to JSON</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice wanted to keep track of her adventures in Wonderland. She decided to use JSON to store her personal details like her name, age, and city. This way, she could easily share her story with others! 🌟</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId21">data = {<br>
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,<br>
+    <span class="string">"age"</span>: <span class="number">30</span>,<br>
+    <span class="string">"city"</span>: <span class="string">"Wonderland"</span><br>
+}<br>
+print(data)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId21')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>JSON (JavaScript Object Notation) is lightweight and easy to read.</li>
+            <li>Use double quotes for keys and string values.</li>
+            <li>JSON can be easily converted to and from Python dictionaries.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-introduction')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-introduction"></div>
+</div>
+
+<!-- Tutorial 22: Working with JSON Arrays -->
+<div class="card">
+    <h2>Tutorial 22: Working with JSON Arrays</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice discovered a magical garden filled with fruits! She created a JSON array to keep track of all her favorites: apples, bananas, and cherries. With this array, she could easily add or remove fruits as she tasted new ones! 🍏🍌🍒</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId22">data = {<br>
+    <span class="string">"fruits"</span>: [<br>
+        <span class="string">"apple"</span>,<br>
+        <span class="string">"banana"</span>,<br>
+        <span class="string">"cherry"</span><br>
+    ]<br>
+}<br>
+print(data)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId22')">Copy Code</button>
+    </div>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Arrays in JSON can hold multiple values, including strings, numbers, and objects.</li>
+            <li>Access elements in the array using their index.</li>
+            <li>JSON arrays are great for storing collections of data.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-arrays')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-arrays"></div>
+</div>
+
+<!-- Tutorial 23: Nested JSON Objects -->
+<div class="card">
+    <h2>Tutorial 23: Nested JSON Objects</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice's adventures required more details. She created a nested JSON object to include her address. Now, her stories had both her personal info and where she lived in Wonderland! 🏰🌈</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId23">data = {<br>
+    <span class="string">"person"</span>: {<br>
+        <span class="string">"name"</span>: <span class="string">"Alice"</span>,<br>
+        <span class="string">"age"</span>: <span class="number">30</span>,<br>
+        <span class="string">"address"</span>: {<br>
+            <span class="string">"city"</span>: <span class="string">"Wonderland"</span>,<br>
+            <span class="string">"zipcode"</span>: <span class="string">"12345"</span><br>
+        }<br>
+    }<br>
+}<br>
+print(data)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId23')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Nested objects allow for organizing data hierarchically.</li>
+            <li>Access nested data using dot notation or brackets.</li>
+            <li>Keep your JSON structure organized to avoid confusion.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-nested')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-nested"></div>
+</div>
+
+<!-- Tutorial 24: JSON with Lists -->
+<div class="card">
+    <h2>Tutorial 24: JSON with Lists</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice decided to start a team in Wonderland! She made a JSON structure to list her employees, Bob the Developer and Charlie the Designer. This way, she could manage her team easily! 👩‍💻🎨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId24">data = {<br>
+    <span class="string">"employees"</span>: [<br>
+        {<br>
+            <span class="string">"name"</span>: <span class="string">"Bob"</span>,<br>
+            <span class="string">"position"</span>: <span class="string">"Developer"</span><br>
+        },<br>
+        {<br>
+            <span class="string">"name"</span>: <span class="string">"Charlie"</span>,<br>
+            <span class="string">"position"</span>: <span class="string">"Designer"</span><br>
+        }<br>
+    ]<br>
+}<br>
+print(data)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId24')">Copy Code</button>
+    </div>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Lists can contain objects, allowing for rich data representation.</li>
+            <li>Keep your data organized to facilitate access and updates.</li>
+            <li>JSON can be used to store configurations and settings for applications.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-lists')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-lists"></div>
+</div>
+
+<!-- Tutorial 25: Accessing JSON Data -->
+<div class="card">
+    <h2>Tutorial 25: Accessing JSON Data</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice wanted to access her name from the JSON data she created. She used Python's `json` module to parse the JSON and retrieve her name, making her data come alive! 🎉</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId25">import json<br>
+data = '''{<br>
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,<br>
+    <span class="string">"age"</span>: <span class="number">30</span>,<br>
+    <span class="string">"city"</span>: <span class="string">"Wonderland"</span><br>
+}'''<br>
+parsed_data = json.loads(data)<br>
+print(parsed_data[<span class="string">"name"</span>])</pre>
+        <button class="copy-btn" onclick="copyCode('codeId25')">Copy Code</button>
+    </div>
+    <p>Learn how to access and parse JSON data in Python.</p>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Use `json.loads()` to parse JSON strings into Python objects.</li>
+            <li>Access JSON data like you would with dictionaries.</li>
+            <li>Always validate your JSON structure for errors before parsing.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-access')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-access"></div>
+</div>
+
+<!-- Tutorial 26: Modifying JSON Data -->
+<div class="card">
+    <h2>Tutorial 26: Modifying JSON Data</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice realized she was growing older and wanted to update her age in the JSON data. She learned how to modify the data and felt a sense of accomplishment as her story evolved! 🥳</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId26">import json<br>
+data = '''{<br>
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,<br>
+    <span class="string">"age"</span>: <span class="number">30</span><br>
+}'''<br>
+parsed_data = json.loads(data)<br>
+parsed_data[<span class="string">"age"</span>] += 1<br>
+modified_data = json.dumps(parsed_data)<br>
+print(modified_data)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId26')">Copy Code</button>
+    </div>
+
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Use `json.dumps()` to convert Python objects back to JSON format.</li>
+            <li>Make changes to the parsed data before converting it back to JSON.</li>
+            <li>Keep your modifications organized to prevent data loss.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-modifying')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-modifying"></div>
+</div>
+
+<!-- Tutorial 27: JSON Validation and Error Handling -->
+<div class="card">
+    <h2>Tutorial 27: JSON Validation and Error Handling</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice accidentally made a mistake in her JSON format. She learned how to validate her JSON data and catch errors, ensuring her data was always accurate! 🛠️✨</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId27">import json<br>
+data = '''{<br>
+    <span class="string">"name"</span>: <span class="string">"Alice"</span>,<br>
+    <span class="string">"age"</span>: <span class="number">30</span>,<br>
+    <span class="string">"city"</span>: <span class="string">"Wonderland"</span><br>
+}'''<br>
+try:<br>
+    parsed_data = json.loads(data)<br>
+except json.JSONDecodeError as e:<br>
+    print(f"JSON decode error: {e}")</pre>
+        <button class="copy-btn" onclick="copyCode('codeId27')">Copy Code</button>
+    </div>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Use try-except blocks to catch JSON parsing errors.</li>
+            <li>Always validate JSON data before using it in your application.</li>
+            <li>Consider using online tools to check your JSON structure.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-validation')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-validation"></div>
+</div>
+
+<!-- Tutorial 28: Advanced JSON Structures -->
+<div class="card">
+    <h2>Tutorial 28: Advanced JSON Structures</h2>
+    <div class="story">
+        <h3><span class="icon">📖</span> Story:</h3>
+        <p>Alice decided to build her own company in Wonderland. She created an advanced JSON structure to include all her employees and their ages, as well as her company’s location! 💼🏡</p>
+    </div>
+    <div class="code-container">
+        <pre id="codeId28">data = {<br>
+    <span class="string">"company"</span>: {<br>
+        <span class="string">"employees"</span>: [<br>
+            {<br>
+                <span class="string">"name"</span>: <span class="string">"Bob"</span>,<br>
+                <span class="string">"age"</span>: <span class="number">35</span><br>
+            },<br>
+            {<br>
+                <span class="string">"name"</span>: <span class="string">"Charlie"</span>,<br>
+                <span class="string">"age"</span>: <span class="number">28</span><br>
+            }<br>
+        ],<br>
+        <span class="string">"location"</span>: <span class="string">"Wonderland"</span><br>
+    }<br>
+}<br>
+print(data)</pre>
+        <button class="copy-btn" onclick="copyCode('codeId28')">Copy Code</button>
+    </div>
+    <p>Discover advanced JSON structures that combine various elements.</p>
+
+    <div class="tip">
+        <h3><span class="icon">💡</span> Tips:</h3>
+        <ul>
+            <li>Complex structures help you model real-world scenarios.</li>
+            <li>Keep your data organized to make it easier to work with.</li>
+            <li>Advanced JSON structures can be useful for APIs and configurations.</li>
+        </ul>
+    </div>
+    <button onclick="showQuiz('python-json-advanced')">Take Quiz</button>
+    <div class="quiz" id="quiz-python-json-advanced"></div>
+</div>
+
+
+
+<script>
+
+const quizzes = {
+    'python-integers': [
+    {
+        question: "What is the data type used for whole numbers?",
+        options: [
+            { text: "Float", correct: false },
+            { text: "Integer", correct: true },
+            { text: "String", correct: false },
+            { text: "Boolean", correct: false }
+        ]
+    }
+],
+
+'python-floats': [
+    {
+        question: "What is the data type used for decimal numbers?",
+        options: [
+            { text: "Integer", correct: false },
+            { text: "Float", correct: true },
+            { text: "String", correct: false },
+            { text: "List", correct: false }
+        ]
+    }
+],
+
+'python-strings': [
+    {
+        question: "What is the data type used for textual data?",
+        options: [
+            { text: "String", correct: true },
+            { text: "Integer", correct: false },
+            { text: "Float", correct: false },
+            { text: "Dictionary", correct: false }
+        ]
+    }
+],
+
+'python-lists': [
+    {
+        question: "Which data type can hold multiple values in an ordered manner?",
+        options: [
+            { text: "Tuple", correct: false },
+            { text: "Set", correct: false },
+            { text: "List", correct: true },
+            { text: "String", correct: false }
+        ]
+    }
+],
+
+'python-tuples': [
+    {
+        question: "Which data type is immutable and can hold multiple values?",
+        options: [
+            { text: "List", correct: false },
+            { text: "Tuple", correct: true },
+            { text: "Dictionary", correct: false },
+            { text: "Set", correct: false }
+        ]
+    }
+],
+
+'python-dictionaries': [
+    {
+        question: "Which data type stores key-value pairs?",
+        options: [
+            { text: "List", correct: false },
+            { text: "Dictionary", correct: true },
+            { text: "Tuple", correct: false },
+            { text: "Set", correct: false }
+        ]
+    }
+],
+
+'python-sets': [
+    {
+        question: "Which data type contains unique items and is unordered?",
+        options: [
+            { text: "List", correct: false },
+            { text: "Set", correct: true },
+            { text: "Dictionary", correct: false },
+            { text: "Tuple", correct: false }
+        ]
+    }
+],
+
+'python-boolean': [
+    {
+        question: "What data type represents True or False values?",
+        options: [
+            { text: "Integer", correct: false },
+            { text: "Boolean", correct: true },
+            { text: "String", correct: false },
+            { text: "List", correct: false }
+        ]
+    }
+],
+
+'python-nonetype': [
+    {
+        question: "What does None represent?",
+        options: [
+            { text: "A variable with no value", correct: true },
+            { text: "A boolean value", correct: false },
+            { text: "An immutable collection", correct: false },
+            { text: "A whole number", correct: false }
+        ]
+    }
+],
+
+'python-complex': [
+    {
+        question: "Which data type is used for complex numbers?",
+        options: [
+            { text: "Integer", correct: false },
+            { text: "Float", correct: false },
+            { text: "Complex", correct: true },
+            { text: "String", correct: false }
+        ]
+    }
+],
+
+    
+    'python-intro': [
+        { 
+            question: "What is the output of print('Hello, World!')?",
+            options: [
+                { text: "'Hello, World!'", correct: true },
+                { text: "'Hello'", correct: false },
+                { text: "'World!'", correct: false },
+                { text: "'Hello, World'", correct: false }
+            ]
+        }
+    ],
+    'python-variables': [
+        {
+            question: "How do you declare a variable in Python?",
+            options: [
+                { text: "var x = 10", correct: false },
+                { text: "x = 10", correct: true },
+                { text: "let x = 10", correct: false },
+                { text: "declare x = 10", correct: false }
+            ]
+        }
+    ],
+    'python-data-types': [
+        {
+            question: "Which of the following is a boolean value?",
+            options: [
+                { text: "True", correct: true },
+                { text: "10", correct: false },
+                { text: "'Hello'", correct: false }
+            ]
+        }
+    ],
+    'python-conditions': [
+        {
+            question: "What will `if 1 == 1:` evaluate to?",
+            options: [
+                { text: "False", correct: false },
+                { text: "True", correct: true },
+                { text: "None", correct: false }
+            ]
+        }
+    ],
+    'python-loops': [
+        {
+            question: "What is the output of the following code?\n`for i in range(3): print(i)`",
+            options: [
+                { text: "0 1 2", correct: true },
+                { text: "1 2 3", correct: false },
+                { text: "0 1 2 3", correct: false }
+            ]
+        }
+    ],
+    'python-functions': [
+        {
+            question: "What keyword is used to define a function?",
+            options: [
+
+                { text: "func", correct: false },
+                { text: "define", correct: false },
+                { text: "def", correct: true }
+            ]
+        }
+    ],
+    'python-lists': [
+        {
+            question: "How do you create a list in Python?",
+            options: [
+                { text: "[]", correct: true },
+                { text: "{}", correct: false },
+                { text: "()()", correct: false }
+            ]
+        }
+    ],
+    'python-strings': [
+        {
+            question: "What will `print('Hello'.upper())` output?",
+            options: [
+                { text: "'hello'", correct: false },
+                { text: "'HELLO'", correct: true },
+                { text: "'Hello'", correct: false }
+            ]
+        }
+    ],
+    'python-dictionaries': [
+        {
+            question: "How do you define a dictionary in Python?",
+            options: [
+                { text: "[]", correct: false },
+                { text: "{}", correct: true },
+                { text: "()()", correct: false }
+            ]
+        }
+    ],
+    'python-classes': [
+        {
+            question: "How do you create an object of a class?",
+            options: [
+
+                { text: "obj = new ClassName()", correct: false },
+                { text: "obj = ClassName()", correct: true },
+                { text: "obj = ClassName[]", correct: false },
+                { text: "obj = ClassName.create()", correct: false }
+            ]
+        }
+    ],
+    'python-file-handling': [
+        {
+            question: "What mode is used to read a file?",
+            options: [
+
+                { text: "'w'", correct: false },
+                { text: "'a'", correct: false },
+                { text: "'rw'", correct: false },
+                { text: "'r'", correct: true }
+            ]
+        }
+    ],
+    'python-exception-handling': [
+        {
+            question: "What keyword is used to catch exceptions?",
+            options: [
+                { text: "catch", correct: false },
+                { text: "except", correct: true },
+                { text: "try", correct: false },
+                { text: "finally", correct: false }
+            ]
+        }
+    ],
+    'python-list-comprehensions': [
+        {
+            question: "What is a list comprehension?",
+            options: [
+                { text: "A way to create lists", correct: true },
+                { text: "A function", correct: false },
+                { text: "A type of loop", correct: false },
+                { text: "A method", correct: false }
+            ]
+        }
+    ],
+    'python-lambda': [
+        {
+            question: "What does a lambda function do?",
+            options: [
+                { text: "Defines a function", correct: true },
+                { text: "Returns a value", correct: false },
+                { text: "Prints a value", correct: false },
+                { text: "Creates a variable", correct: false }
+            ]
+        }
+    ],
+    'python-decorators': [
+        {
+            question: "What is a decorator?",
+            options: [
+                { text: "A function that wraps another function", correct: true },
+                { text: "A type of class", correct: false },
+                { text: "A variable", correct: false },
+                { text: "A module", correct: false }
+            ]
+        }
+    ]
+    
+                                                  
+    // Add other quiz categories...
+};
+
+
+// Copy to clipboard function
+function copyCode(codeId) {
+    const codeElement = document.getElementById(codeId);
+    if (!codeElement) {
+        alert("Code ID not found!");
+        return;
+    }
+    
+    const codeText = codeElement.innerText;
+    const tempElement = document.createElement('textarea');
+    tempElement.value = codeText;
+    document.body.appendChild(tempElement);
+    
+    tempElement.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempElement);
+    
+    alert('Code copied to clipboard!');
+}
+
+// Show quiz function
+// Show quiz function
+function showQuiz(tutorialId) {
+    const quizContainer = document.getElementById(`quiz-${tutorialId}`);
+    quizContainer.style.display = "block";
+    const quizData = quizzes[tutorialId];
+
+    // Clear previous content
+    quizContainer.innerHTML = "";
+
+    quizData.forEach((q) => {
+        const questionElement = document.createElement("p");
+        questionElement.innerText = q.question;
+        quizContainer.appendChild(questionElement);
+
+        const optionsContainer = document.createElement("div"); // Container for options
+        optionsContainer.className = "options-container"; // Add class for styling
+
+        q.options.forEach(option => {
+            const optionElement = document.createElement("button");
+            optionElement.innerText = option.text;
+            optionElement.onclick = () => {
+                if (option.correct) {
+                    // Wait for 2 seconds, then hide quiz container and show success message
+                    const successMessage = document.createElement("div");
+                    successMessage.className = "success-message"; // Add a class for styling
+                    successMessage.innerText = "🎉 Correct! Well done!";
+                    document.body.appendChild(successMessage); // Append message to body
+
+                    setTimeout(() => {
+                        quizContainer.style.display = "none"; // Hide the entire quiz
+                        document.body.removeChild(successMessage); // Remove success message
+                    }, 2000); // 2000 milliseconds = 2 seconds
+                } else {
+                    // Show incorrect alert   
+                    showAlert("🚫 Incorrect. Try again!", 'incorrect');
+                }
+            };
+            optionsContainer.appendChild(optionElement);
+        });
+
+        quizContainer.appendChild(optionsContainer); // Append options container
+    });
+}
+
+function showAlert(message, type) {
+    const alertBox = document.createElement("div");
+    alertBox.className = type === 'incorrect' ? 'incorrect-message' : 'success-message';
+    alertBox.innerText = message;
+    document.body.appendChild(alertBox);
+
+    // Automatically remove the alert after a few seconds
+    setTimeout(() => {
+        document.body.removeChild(alertBox);
+    }, 3000); // Change to desired time (3000ms = 3 seconds)
+}
+const contactLink = document.getElementById('contactLink');
+contactLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            fetch('index.html')  // Load index.html for the form
+                .then(response => response.text())
+                .then(html => {
+                    formContent.innerHTML = html; // Inject the form HTML into the modal
+                    modalOverlay.style.display = 'flex'; // Show the modal
+                })
+                .catch(err => console.log('Error loading form:', err));
+        });
+
+        // Close the modal when clicking the close button
+        closeModal.addEventListener('click', function () {
+            modalOverlay.style.display = 'none';
+        });
+
+</script>
+</body>
+</html>
