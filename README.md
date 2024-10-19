@@ -1,5 +1,5 @@
 # Welcome to the Alpha Version of My Python Tutorial Website!
-Thank you for checking out this alpha release! The site is currently under active development, with many features and improvements to come. I’ve included comments and notes throughout to provide insight into the current structure and future plans.
+Thank you for checking out this alpha release! The site is currently under active development, with many features and improvements to come. **I’ve included comments and notes throughout to provide insight into the current structure and future plans**.                                                                                        
 
 ## Why Release So Early?
 As the sole developer of this project, I highly value your feedback. I uploaded the site early to gather insights on how to make it better. My goal is to create a platform that is functional, user-friendly, engaging, and accessible for learners at all levels.
